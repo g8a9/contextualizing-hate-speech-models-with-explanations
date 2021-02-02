@@ -49,7 +49,7 @@ from bert.modeling import BertForSequenceClassification, BertConfig
 from bert.tokenization import BertTokenizer
 from bert.optimization import BertAdam, WarmupLinearSchedule
 
-from loader import GabProcessor, WSProcessor, NytProcessor, convert_examples_to_features
+from loader import GabProcessor, WSProcessor, NytProcessor, WikiProcessor, convert_examples_to_features
 from utils.config import configs, combine_args
 
 # for hierarchical explanation algorithms
@@ -259,13 +259,15 @@ def main():
     processors = {
         'gab': GabProcessor,
         'ws': WSProcessor,
-        'nyt': NytProcessor
+        'nyt': NytProcessor,
+        "wiki": WikiProcessor
     }
 
     output_modes = {
         'gab': 'classification',
         'ws': 'classification',
-        'nyt': 'classification'
+        'nyt': 'classification',
+        "wiki": "classification"
     }
 
     if args.local_rank == -1 or args.no_cuda:
@@ -300,7 +302,6 @@ def main():
     if not args.do_train and not args.do_eval:
         raise ValueError("At least one of `do_train` or `do_eval` must be True.")
 
-    #if os.path.exists(args.output_dir) and os.listdir(args.output_dir) and args.do_train:
     #    raise ValueError("Output directory ({}) already exists and is not empty.".format(args.output_dir))
     if not os.path.exists(args.output_dir):
         os.makedirs(args.output_dir)

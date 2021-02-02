@@ -36,7 +36,7 @@ do
         --reg_strength 0.1 \
         --lm_dir runs/lm_ws \
         --hiex_add_itself \
-        --neutral_words_file data/identity_ws_new.csv \
+        --neutral_words_file data/identity_madlibs.tsv \
         --no_cuda
     let current_seed++
 done
