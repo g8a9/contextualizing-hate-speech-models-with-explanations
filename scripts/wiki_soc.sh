@@ -22,11 +22,11 @@ do
         --data_dir ./data/wiki \
         --bert_model bert-base-uncased \
         --max_seq_length 128 \
-        --train_batch_size 32 \
+        --train_batch_size 64 \
         --learning_rate 2e-5 \
         --num_train_epochs 20 \
         --early_stop 5 \
-        --output_dir runs/bert_soc-wiki-${current_seed} \
+        --output_dir runs/bert_soc_madITs-wiki-${current_seed} \
         --seed ${current_seed} \
         --task_name wiki \
         --reg_explanations \
@@ -36,7 +36,7 @@ do
         --reg_strength 0.1 \
         --lm_dir runs/lm_ws \
         --hiex_add_itself \
-        --neutral_words_file data/identity_madlibs.tsv \
-        --no_cuda
+        --neutral_words_file data/identity_madlibs.tsv
+        # --no_cuda
     let current_seed++
 done
